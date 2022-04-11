@@ -13,7 +13,7 @@
     <string name="content">Content</string>
     <string name="comments">Comments</string>
     <string name="comments_count">12</string>
-    <string name="emptyString"></string>
+    <string name="emptyString"> </string>
     <string name="username">username</string>
     <string name="article_time">Article Time</string>
     <string name="title_activity_test">TestActivity</string>
@@ -23,6 +23,7 @@
     <string name="delete">DELETE</string>
     <string name="network_failure_message">Network Failure</string>
     <string name="conversion_error_message">Conversion Error</string>
+    <string name="user_image_description">userimage</string>
 
 
 </resources>

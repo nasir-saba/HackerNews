@@ -1,9 +1,11 @@
 package com.sn.hackernewsapp.ui.fragments
 
+import android.annotation.SuppressLint
 import android.graphics.text.LineBreaker
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.Html.fromHtml
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -18,6 +20,7 @@ import com.sn.hackernewsapp.ui.main.HackerNewsViewModel
 import com.sn.hackernewsapp.util.Resource
 import kotlinx.android.synthetic.main.article_layout.*
 
+@Suppress("DEPRECATION")
 class ArticleFragment : Fragment(R.layout.article_layout) {
     val args: ArticleFragmentArgs by navArgs()
     lateinit var viewModel: HackerNewsViewModel
@@ -44,9 +47,9 @@ class ArticleFragment : Fragment(R.layout.article_layout) {
     private fun setUpToolbar() {
         toolbar.setNavigationIcon(R.drawable.outline_arrow_back_24)
         toolbar.title = getString(R.string.detail)
-        toolbar.setOnClickListener(View.OnClickListener {
+        toolbar.setOnClickListener {
             activity?.onBackPressed()
-        })
+        }
         setHasOptionsMenu(true)
     }
 
@@ -101,19 +104,19 @@ class ArticleFragment : Fragment(R.layout.article_layout) {
         tvArticleTitle.text = article.title
         (getString(R.string.by_string) + article.user).also { tvUserName.text = it }
         if (article.comments_count != 0) {
-            tvCommentsCount.text = article.comments_count.toString()
             setAdapterData(article)
             rvComments.adapter = adapter
         } else {
             commentsHeader.visibility = View.GONE
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            tvArticleContent.text = Html.fromHtml(article.content, Html.FROM_HTML_MODE_LEGACY)
+            tvArticleContent.text = fromHtml(article.content, Html.FROM_HTML_MODE_LEGACY)
         } else {
-            tvArticleContent.text = Html.fromHtml(article.content)
+            tvArticleContent.text = fromHtml(article.content)
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setAdapterData(article: ArticleInternal) {
         setCellSize(article)
         adapter = CommentsAdapter(article.comments, expandedSize)
