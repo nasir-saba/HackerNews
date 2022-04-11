@@ -12,7 +12,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sn.hackernewsapp.HackerNewsApplication
-import com.sn.hackernewsapp.R
 import com.sn.hackernewsapp.models.Article
 import com.sn.hackernewsapp.models.ArticleInternal
 import com.sn.hackernewsapp.repository.HackerNewsRepository
@@ -68,7 +67,7 @@ class HackerNewsViewModel(
                 return Resource.Success(resultResponse)
             }
         }
-        return Resource.Error(response.message())
+        return Error(response.message())
     }
 
     private fun handleArticleInternalResponse(response: Response<ArticleInternal>): Resource<ArticleInternal> {
@@ -77,7 +76,7 @@ class HackerNewsViewModel(
                 return Resource.Success(resultResponse)
             }
         }
-        return Resource.Error(response.message())
+        return Error(response.message())
     }
 
     private suspend fun safeInternalArticlesCall(articleId: String) {
@@ -88,12 +87,12 @@ class HackerNewsViewModel(
                 val response = hackerNewsRepository.getArticleInternal(articleId)
                 articleInternal.postValue(handleArticleInternalResponse(response))
             } else {
-                articleInternal.postValue(Resource.Error("No Internet Connection"))
+                articleInternal.postValue(Error("No Internet Connection"))
             }
         } catch (t: Throwable) {
             when (t) {
-                is IOException -> articleInternal.postValue(Resource.Error("Network Failure"))
-                else -> articleInternal.postValue(Resource.Error("Conversion Error"))
+                is IOException -> articleInternal.postValue(Error("Network Failure"))
+                else -> articleInternal.postValue(Error("Conversion Error"))
             }
         }
     }
@@ -106,12 +105,12 @@ class HackerNewsViewModel(
                 val response = hackerNewsRepository.getArticleExternal(articleId)
                 article.postValue(handleExternalArticleResponse(response))
             } else {
-                article.postValue(Resource.Error("No internet connection"))
+                article.postValue(Error("No internet connection"))
             }
         } catch (t: Throwable) {
             when (t) {
-                is IOException -> article.postValue(Resource.Error("Network Failure"))
-                else -> article.postValue(Resource.Error("Conversion Error"))
+                is IOException -> article.postValue(Error("Network Failure"))
+                else -> article.postValue(Error("Conversion Error"))
             }
         }
     }
@@ -123,12 +122,12 @@ class HackerNewsViewModel(
                 val response = hackerNewsRepository.getNewArticles(hackerNewsPage)
                 articles.postValue(handleNewArticlesResponse(response))
             } else {
-                articles.postValue(Resource.Error("No internet connection"))
+                articles.postValue(Error("No internet connection"))
             }
         } catch (t: Throwable) {
             when (t) {
-                is IOException -> articles.postValue(Resource.Error("Network Failure"))
-                else -> articles.postValue(Resource.Error("Conversion Error"))
+                is IOException -> articles.postValue(Error("Network Failure"))
+                else -> articles.postValue(Error("Conversion Error"))
             }
         }
     }
@@ -142,7 +141,6 @@ class HackerNewsViewModel(
     fun deleteArticle(article: Article) = viewModelScope.launch {
         hackerNewsRepository.deleteArticle(article)
     }
-
 
     private fun hasInternetConnection(): Boolean {
         val connectivityManager = getApplication<HackerNewsApplication>().getSystemService(

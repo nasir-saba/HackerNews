@@ -57,6 +57,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupObserverForArticles()
+        swipeRefreshLayout.setOnRefreshListener{
+            viewModel.getNewArticles()
+        }
         newsAdapter.setOnItemClickListener {
             if (!it.url.contains("item?id")) {
                 openExternalArticle(it.url)
@@ -148,10 +151,11 @@ class HomeFragment : Fragment() {
     @SuppressLint("LongLogTag")
     private fun setupObserverForArticles() {
         viewModel.articles
-            .observe(viewLifecycleOwner, Observer { response ->
+            .observe(viewLifecycleOwner) { response ->
                 Log.e(TAG, response.toString())
                 when (response) {
                     is Resource.Success -> {
+                        swipeRefreshLayout.isRefreshing = false
                         hideProgressBar()
                         response.data?.let { newsResponse ->
                             newsAdapter.differ.submitList(newsResponse.toList())
@@ -163,21 +167,26 @@ class HomeFragment : Fragment() {
                     }
                     is Resource.Error -> {
                         hideProgressBar()
+                        swipeRefreshLayout.isRefreshing = false
                         response.message?.let { message ->
                             displayErrorMessage(message)
                         }
 
                     }
                     is Resource.Loading -> {
+                        swipeRefreshLayout.isRefreshing = false
                         showProgressBar()
                     }
                 }
-            })
+            }
     }
 
     private fun displayErrorMessage(message: String) {
         val snack = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
         snack.view.setBackgroundColor(Color.BLACK)
+//        snack.setAction("") {
+//            viewModel.getNewArticles()
+//        }
         val textView =
             snack.view.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
         textView.setTextColor(Color.WHITE)
