@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Hacker News</string>
+    <string name="title_home">Home</string>
+    <string name="title_saved">Saved</string>
+    <string name="title_search">Search</string>
+    <string name="title_article">Title</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="no_internet_message">No Internet Connection</string>
+    <string name="retry">RETRY</string>
+    <string name="generic_error">Something went wrong!</string>
+    <string name="save_article">Save article</string>
+    <string name="content">Content</string>
+    <string name="comments">Comments</string>
+    <string name="comments_count">12</string>
+    <string name="emptyString"></string>
+    <string name="username">username</string>
+    <string name="article_time">Article Time</string>
+    <string name="title_activity_test">TestActivity</string>
+    <string name="by_string">"By "</string>
+    <string name="failed_to_connect">Failed to connect</string>
+    <string name="detail">Detail</string>
+    <string name="delete">DELETE</string>
+    <string name="network_failure_message">Network Failure</string>
+    <string name="conversion_error_message">Conversion Error</string>
+
+
+</resources>
