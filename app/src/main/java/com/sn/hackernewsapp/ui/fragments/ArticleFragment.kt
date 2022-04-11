@@ -20,7 +20,6 @@ import com.sn.hackernewsapp.ui.main.HackerNewsViewModel
 import com.sn.hackernewsapp.util.Resource
 import kotlinx.android.synthetic.main.article_layout.*
 
-@Suppress("DEPRECATION")
 class ArticleFragment : Fragment(R.layout.article_layout) {
     val args: ArticleFragmentArgs by navArgs()
     lateinit var viewModel: HackerNewsViewModel
