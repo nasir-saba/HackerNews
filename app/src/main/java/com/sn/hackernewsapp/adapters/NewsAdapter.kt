@@ -47,10 +47,10 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>()
         val article = differ.currentList[position]
 
         holder.itemView.apply {
-            if (article.url.contains("item?id")){
-                articleType = ArticleType.INTERNAL
+            articleType = if (article.url?.contains("item?id") == true){
+                ArticleType.INTERNAL
             }else{
-                articleType = ArticleType.EXTERNAL
+                ArticleType.EXTERNAL
             }
             binding.tvTitle.text = article.title
             binding.tvSource.text = article.source()

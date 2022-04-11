@@ -61,15 +61,16 @@ class HomeFragment : Fragment() {
             viewModel.getNewArticles()
         }
         newsAdapter.setOnItemClickListener {
-            if (!it.url.contains("item?id")) {
-                openExternalArticle(it.url)
-            } else {
+            if (it.url?.contains("item?id") == true) {
                 val bundle = Bundle()
                 bundle.putSerializable("articleUrl", it.url)
                 findNavController().navigate(
                     R.id.action_homeFragment_to_articleFragment,
                     bundle
                 )
+            } else {
+                it.url?.let { it1 -> openExternalArticle(it1) }
+
             }
         }
 

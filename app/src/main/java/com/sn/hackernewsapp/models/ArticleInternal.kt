@@ -9,11 +9,11 @@ data class ArticleInternal(
     val comments_count: Int,
     val content: String,
     val id: Int,
-    val points: Int,
+    val points: Int? = null,
     val time: Int,
     val time_ago: String,
     val title: String,
     val type: String,
-    val url: String,
-    val user: String
+    val url: String? ="",
+    val user: String? =""
 ): Serializable

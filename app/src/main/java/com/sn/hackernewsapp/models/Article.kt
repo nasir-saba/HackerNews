@@ -14,15 +14,16 @@ data class Article(
     val comments_count: Int,
     val domain: String? = "",
     val id: Int,
-    val points: Int,
+    val points: Int? = null,
     val time: Int,
     val time_ago: String,
     val title: String,
     val type: String,
-    var url: String,
-    val user: String
+    var url: String? = "",
+    var user: String? = ""
 ): Serializable {
     fun source(): String {
+        if (user == null){user = ""}
         return StringBuilder().append(user).append(" - ").append( TimeUtil.getDateTime(time.toString()))
             .toString()
     }
