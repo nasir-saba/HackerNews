@@ -19,7 +19,6 @@ import com.sn.hackernewsapp.R
 import com.sn.hackernewsapp.adapters.NewsAdapter
 import com.sn.hackernewsapp.ui.main.HackerNewsViewModel
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
-import kotlinx.android.synthetic.main.fragment_article.*
 import kotlinx.android.synthetic.main.fragment_saved.*
 import kotlinx.android.synthetic.main.fragment_saved.pbLoading
 
@@ -118,10 +117,10 @@ class SavedFragment : Fragment(R.layout.fragment_saved) {
     }
 
     private fun setupObserverForSavedArticles() {
-        viewModel.getSavedArticles().observe(viewLifecycleOwner, Observer { articles ->
+        viewModel.getSavedArticles().observe(viewLifecycleOwner) { articles ->
             newsAdapter.differ.submitList(articles)
             pbLoading.visibility = View.GONE
-        })
+        }
     }
 
     private fun openExternalArticle(url: String) {

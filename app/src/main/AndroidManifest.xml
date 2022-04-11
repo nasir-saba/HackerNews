@@ -9,15 +9,14 @@
     <application
         android:name=".HackerNewsApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_icon"
+        android:icon="@mipmap/y_icon_hackernews"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_icon_round"
+        android:roundIcon="@mipmap/y_icon_hackernews_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication" >
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,8 +26,7 @@
         </activity>
         <activity
             android:name=".ui.main.HackerNewsActivity"
-            android:exported="true"
-            android:label="@string/app_name" >
+            android:exported="true" >
         </activity>
     </application>
 

@@ -1,7 +1,6 @@
 package com.sn.hackernewsapp.ui.fragments
 
 import android.annotation.SuppressLint
-import android.graphics.text.LineBreaker
 import android.os.Build
 import android.os.Bundle
 import android.text.Html
@@ -18,9 +17,9 @@ import com.sn.hackernewsapp.models.Comment
 import com.sn.hackernewsapp.ui.main.HackerNewsActivity
 import com.sn.hackernewsapp.ui.main.HackerNewsViewModel
 import com.sn.hackernewsapp.util.Resource
-import kotlinx.android.synthetic.main.article_layout.*
+import kotlinx.android.synthetic.main.fragment_article.*
 
-class ArticleFragment : Fragment(R.layout.article_layout) {
+class ArticleFragment : Fragment(R.layout.fragment_article) {
     val args: ArticleFragmentArgs by navArgs()
     lateinit var viewModel: HackerNewsViewModel
     val TAG = "ArticleFragment"

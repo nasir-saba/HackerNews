@@ -1,6 +1,7 @@
 package com.sn.hackernewsapp.adapters
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.os.Build
@@ -14,8 +15,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.sn.hackernewsapp.R
 import com.sn.hackernewsapp.models.Comment
-import kotlinx.android.synthetic.main.article_layout.view.*
-import kotlinx.android.synthetic.main.fragment_article.*
 import kotlinx.android.synthetic.main.item_comment.view.*
 import kotlin.collections.ArrayList
 
@@ -40,6 +39,7 @@ class CommentsAdapter(
     }
 
 //    private var lastTappedCell: Int? = null
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val drawableLeft = ContextCompat.getDrawable(context, R.drawable.outline_comment_24)
         val drawableRightExpandMore = ContextCompat.getDrawable(context, R.drawable.outline_expand_more_24)

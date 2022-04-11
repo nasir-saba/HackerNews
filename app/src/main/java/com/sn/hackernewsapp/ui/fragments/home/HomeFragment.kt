@@ -30,9 +30,7 @@ import com.sn.hackernewsapp.util.Constants.Companion.PAGE_LIMIT
 import com.sn.hackernewsapp.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.sn.hackernewsapp.util.Resource
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
-import kotlinx.android.synthetic.main.fragment_article.pbLoading
 import kotlinx.android.synthetic.main.fragment_home.*
-
 
 class HomeFragment : Fragment() {
 
