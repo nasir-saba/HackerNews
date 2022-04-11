@@ -87,8 +87,8 @@ class HomeFragment : Fragment() {
                     val position = viewHolder.adapterPosition
                     val article = newsAdapter.differ.currentList[position]
                     viewModel.saveArticle(article)
-                    Snackbar.make(view, "Successfully saved article", Snackbar.LENGTH_LONG).apply {
-                        setAction("Undo") {
+                    Snackbar.make(view, "Successfully saved article!", Snackbar.LENGTH_LONG).apply {
+                        setAction("UNDO") {
                             viewModel.deleteArticle(article)
                         }
                         show()
@@ -184,9 +184,6 @@ class HomeFragment : Fragment() {
     private fun displayErrorMessage(message: String) {
         val snack = Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
         snack.view.setBackgroundColor(Color.BLACK)
-//        snack.setAction("") {
-//            viewModel.getNewArticles()
-//        }
         val textView =
             snack.view.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
         textView.setTextColor(Color.WHITE)
